@@ -10,11 +10,11 @@ use App\Exceptions\InvalidArgumentException;
 class InputValidator
 {
     /**
-     * Validates and normalises CLI options
+     * Validates and normalizes CLI options
      * Supports both ShortOpts (-a, -f) and LongOpts (--action, --file)
      * 
      * @param array<string, string|array> $options
-     * @return array{action: string, file: string}
+     * @return array{action: OperationType, file: string}
      */
     public function validateAndNormalizeOptions(array $options): array
     {
