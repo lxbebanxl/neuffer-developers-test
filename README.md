@@ -1,68 +1,59 @@
-# Neuffer developers-test
+# Development Setup
 
-This is my solution to the Neuffers developers-test, implemented using PHP 8.4
+This repository contains the local development environment for the application.
+The **actual application code** and its **dedicated README** are located inside the `app` directory.
 
-## Requirements
+---
 
-- PHP 8.4 or higher
-- No external dependencies required
+## 📁 Project Structure
 
-## Installation
+```
+/
+├── app/                  # Main application code + its own README
+└── localEnvironment/     # Docker-based local development setup
+    └── docker-compose.yml
+```
 
-1. Clone or download the repository
-2. No additional installation required - uses built-in autoloader
+---
 
-## Usage
+## 🐳 Local Development Environment (Docker)
 
-Run the application from the command line:
+The `localEnvironment` directory contains the `docker-compose.yml` file used to run the application inside a PHP 8.4 CLI container.
+
+This environment allows you to open an **interactive shell** and manually execute or test the `console.php` script.
+
+---
+
+## ▶️ Starting an Interactive Shell
+
+From inside the `localEnvironment` folder, run:
+
+```bash
+docker compose run --rm php bash
+```
+
+This will open a shell *inside* the PHP container.
+
+---
+
+## ▶️ Executing the `console.php` Script
+
+Once inside the container:
 
 ```bash
 php console.php --action {action} --file {file}
 ```
 
-### Parameters
-
-- `--action` or `-a`: The mathematical operation to perform
-
-  - `plus`: Addition of two numbers
-  - `minus`: Subtraction (first - second)
-  - `multiply`: Multiplication of two numbers
-  - `division`: Division (first / second)
-
-- `--file` or `-f`: Path to the CSV file containing number pairs
-
-- `--help` or `-h`: Show help
-
-### Input Format
-
-The CSV file should contain two numbers per line, separated by semicolons:
-
-```
-10;20
--30;15
-45;-5
-```
-
-Numbers must be integers between -100 and 100.
-
-### Output
-
-The application generates two files:
-
-1. **result.csv**: Contains results with positive values only
-
-   - Format: `first_number;second_number;result`
-   - Only results greater than 0 are included
-
-2. **log.txt**: Contains operation logs and invalid results
-   - Timestamped entries with operation start/finish
-   - Invalid results (≤ 0) are logged
-   - Division by zero errors
-
-## Testing
-
-Run the tests from the command line:
+or run it directly from outside without entering the shell:
 
 ```bash
-php tests/ClaculatorTest.php
+docker compose run --rm php php console.php --action {action} --file {file}
 ```
+
+---
+
+## ℹ️ Notes
+
+* The container is configured for development only.
+* Application logic should **not** be placed in the `localEnvironment` folder—only in `app/`.
+

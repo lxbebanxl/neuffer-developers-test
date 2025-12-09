@@ -38,7 +38,7 @@ class Calculator
             $this->logger->info("Finished '{$actionName}' operation");
             echo "Processing complete. Results in {$outputFile}" . PHP_EOL;
             
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->logger->error("Error during action '{$this->action}': " . $e->getMessage());
             throw $e;
         }
