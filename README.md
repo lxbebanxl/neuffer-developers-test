@@ -1,67 +1,68 @@
 # Neuffer developers-test
 
-We have prepared for you simple test task what as we believe, allow us to estimate your experience.
-It is a small php-script, which should be started in console like:
+This is my solution to the Neuffers developers-test, implemented using PHP 8.4
 
-`php console.php --action {action}  --file {file}`
+## Requirements
 
-Script will take two required parameters:
+- PHP 8.4 or higher
+- No external dependencies required
 
-`{file}` - csv-source file with numbers, where each row contains two numbers between -100 and 100, and
+## Installation
 
-`{action}` - what action should we do with numbers from `{file}`, and can take next values:
+1. Clone or download the repository
+2. No additional installation required - uses built-in autoloader
 
-* <b>plus</b> - to count summ of the numbers on each row in the {file}
-* <b>minus</b> - to count difference between first number in the row and second
-* <b>multiply</b> - to multiply the numbers on each row in the {file} 
-* <b>division</b> - to divide  first number in the row and second
+## Usage
 
+Run the application from the command line:
 
-As result of the command execution should be csv file with three columns: first number, second number, and result. In CSV-file should be written **ONLY** numbers greater than null. If result less than null - it should be written in logs.
+```bash
+php console.php --action {action} --file {file}
+```
 
-**Example 1**
+### Parameters
 
-`php console.php --action plus  --file {file}`, where in file you can find next numbers:
+- `--action` or `-a`: The mathematical operation to perform
 
-10 20 <br/>
--30 20 <br/>
--3 5 <br/>
+  - `plus`: Addition of two numbers
+  - `minus`: Subtraction (first - second)
+  - `multiply`: Multiplication of two numbers
+  - `division`: Division (first / second)
 
-As result in CSV file you should write:
+- `--file` or `-f`: Path to the CSV file containing number pairs
 
-10 20 30 <br/>
--3 5 2 
+- `--help` or `-h`: Show help
 
-And in log file, something like "_numbers are - 30 and 20 are wrong_"
+### Input Format
 
-**Example 2**
+The CSV file should contain two numbers per line, separated by semicolons:
 
-`php console.php --action division  --file {file}`, where in file you can find next numbers:
+```
+10;20
+-30;15
+45;-5
+```
 
-20 10 <br/>
--30 20 <br/>
-3 0 <br/>
+Numbers must be integers between -100 and 100.
 
-As result in CSV file you should write:
+### Output
 
-20 10 2 <br/>
+The application generates two files:
 
-And in log file, something like:
- 
-_numbers are -30 and 20 are wrong_ <br/>
-_numbers are 3 and 0 are wrong, is not allowed_ <br/>
+1. **result.csv**: Contains results with positive values only
 
-##Task 
-You need to refactor code and write it on proper way. Just do your best: update/delete/add code as you wish.
+   - Format: `first_number;second_number;result`
+   - Only results greater than 0 are included
 
-After finishing - please push your code in your github/bitbucket account, and send me link back.
+2. **log.txt**: Contains operation logs and invalid results
+   - Timestamped entries with operation start/finish
+   - Invalid results (≤ 0) are logged
+   - Division by zero errors
 
-###Requirements
+## Testing
 
-* After refactoring code shoud work
-* Code should work on PHP8.2+
-* As file source example please use test.csv
+Run the tests from the command line:
 
-###Result
-Please put result of your work in your Github or Bitbucket account, and send link back.
-
+```bash
+php tests/ClaculatorTest.php
+```
