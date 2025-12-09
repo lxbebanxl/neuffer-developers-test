@@ -1,18 +1,24 @@
-# Neuffer developers-test
+# Neuffer Developers Test
 
-This is my solution to the Neuffers developers-test, implemented using PHP 8.4
+This repository contains my solution to the **Neuffer Developers Test**, implemented in **PHP 8.4** without any external dependencies.
 
-## Requirements
+---
 
-- PHP 8.4 or higher
-- No external dependencies required
+## 🚀 Requirements
 
-## Installation
+* **PHP 8.4** or higher
+* No third-party libraries required
 
-1. Clone or download the repository
-2. No additional installation required - uses built-in autoloader
+---
 
-## Usage
+## 📦 Installation
+
+1. Clone or download this repository.
+2. No further setup is needed — the project uses a simple built-in autoloader.
+
+---
+
+## ▶️ Usage
 
 Run the application from the command line:
 
@@ -20,22 +26,26 @@ Run the application from the command line:
 php console.php --action {action} --file {file}
 ```
 
-### Parameters
+### **Available Parameters**
 
-- `--action` or `-a`: The mathematical operation to perform
+| Parameter  | Alias | Description                                  |
+| ---------- | ----- | -------------------------------------------- |
+| `--action` | `-a`  | The mathematical operation to perform        |
+| `--file`   | `-f`  | Path to the CSV file containing number pairs |
+| `--help`   | `-h`  | Display the help menu                        |
 
-  - `plus`: Addition of two numbers
-  - `minus`: Subtraction (first - second)
-  - `multiply`: Multiplication of two numbers
-  - `division`: Division (first / second)
+### **Supported Actions**
 
-- `--file` or `-f`: Path to the CSV file containing number pairs
+* `plus` – Addition
+* `minus` – Subtraction (first - second)
+* `multiply` – Multiplication
+* `division` – Division (first / second)
 
-- `--help` or `-h`: Show help
+---
 
-### Input Format
+## 📥 Input Format
 
-The CSV file should contain two numbers per line, separated by semicolons:
+The input CSV file must contain **two integers** per line, separated by semicolons:
 
 ```
 10;20
@@ -43,26 +53,41 @@ The CSV file should contain two numbers per line, separated by semicolons:
 45;-5
 ```
 
-Numbers must be integers between -100 and 100.
+Rules:
 
-### Output
+* Values must be integers between **-100 and 100**
+* Each line must contain exactly **two** numbers
 
-The application generates two files:
+---
 
-1. **result.csv**: Contains results with positive values only
+## 📤 Output Files
 
-   - Format: `first_number;second_number;result`
-   - Only results greater than 0 are included
+The application generates two output files:
 
-2. **log.txt**: Contains operation logs and invalid results
-   - Timestamped entries with operation start/finish
-   - Invalid results (≤ 0) are logged
-   - Division by zero errors
+### **1. `result.csv`**
 
-## Testing
+Contains all **valid results** (greater than 0):
 
-Run the tests from the command line:
+```
+first_number;second_number;result
+```
+
+Only positive results are included.
+
+### **2. `log.txt`**
+
+Contains operation logs, including:
+
+* Timestamps for operation start and end
+* Entries for invalid results (≤ 0)
+* Division-by-zero warnings
+
+---
+
+## 🧪 Testing
+
+Run the tests via CLI:
 
 ```bash
-php tests/ClaculatorTest.php
+php tests/CalculatorTest.php
 ```
