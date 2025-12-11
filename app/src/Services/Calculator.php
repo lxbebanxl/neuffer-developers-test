@@ -19,7 +19,7 @@ class Calculator
         private readonly OperationType $action,
         private readonly DataReaderInterface $reader,
         private readonly DataWriterInterface $writer,
-        private readonly ?Logger $logger = null    
+        private readonly Logger $logger    
     ) {}
     
     public function execute(string $inputFile, string $outputFile = Config::OUTPUT_FILE): void
